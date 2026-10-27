@@ -1,0 +1,580 @@
+
+/* =========================
+   1. CSS Variables
+========================= */
+
+:root {
+    --page-bg: #edf8f0;
+    --text-color: #064b46;
+    --muted-text: #476d7c;
+    --panel-bg: #ffffff;
+    --panel-border: #e3f1e8;
+    --grid-color: #e1ece8;
+    --header-bg: #ffffff;
+    --shadow: 0 4px 18px rgba(21, 70, 50, 0.06);
+}
+
+/* Dark Mode Variables */
+
+body.dark-mode {
+    color-scheme: dark;
+
+    --page-bg: #101a1b;
+    --text-color: #e5f5ed;
+    --muted-text: #a7c2ba;
+    --panel-bg: #192728;
+    --panel-border: #2b4140;
+    --grid-color: #344744;
+    --header-bg: #192728;
+    --shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   2. General Styles
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--page-bg);
+    color: var(--text-color);
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+button,
+a {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.dashboard {
+    min-height: 100vh;
+}
+
+/* =========================
+   3. Sidebar
+========================= */
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 18px;
+    background: #064b3f;
+    color: #ffffff;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 8px 38px;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.brand i {
+    font-size: 23px;
+    color: #a7f3c4;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 15px;
+    border-radius: 10px;
+    color: #d5e9df;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: #ffffff;
+    background: #176d56;
+}
+
+.sidebar-bottom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: auto;
+    padding: 18px 8px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.profile-avatar {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #b9efd0;
+    color: #064b3f;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.profile-info strong {
+    font-size: 13px;
+}
+
+.profile-info small {
+    font-size: 11px;
+    opacity: 0.75;
+}
+
+/* =========================
+   4. Main Content
+========================= */
+
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    padding: 28px 32px;
+}
+
+.top-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px 24px;
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background: var(--header-bg);
+    box-shadow: var(--shadow);
+    transition: background 0.25s ease;
+}
+
+.header-left,
+.header-actions,
+.header-profile {
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    gap: 15px;
+}
+
+.header-left h1 {
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.header-left p {
+    color: var(--muted-text);
+    font-size: 13px;
+}
+
+.header-actions {
+    gap: 18px;
+}
+
+.header-profile {
+    gap: 10px;
+}
+
+.header-profile .profile-info {
+    color: var(--text-color);
+}
+
+.header-profile .profile-info small {
+    color: var(--muted-text);
+    opacity: 1;
+}
+
+.menu-toggle {
+    display: none;
+    padding: 9px 11px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--panel-bg);
+    color: var(--text-color);
+}
+
+/* =========================
+   5. Dark Mode Button
+========================= */
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    background: var(--panel-bg);
+    color: var(--text-color);
+    font-size: 17px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+}
+
+/* =========================
+   6. KPI Cards
+========================= */
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.kpi-card {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background: var(--panel-bg);
+    box-shadow: var(--shadow);
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.kpi-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: var(--muted-text);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.kpi-icon {
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    font-size: 18px;
+}
+
+.revenue-card .kpi-icon {
+    background: #d9f8e5;
+    color: #16844b;
+}
+
+.units-card .kpi-icon {
+    background: #dceaff;
+    color: #2864c5;
+}
+
+.month-card .kpi-icon {
+    background: #fff0c9;
+    color: #b67a00;
+}
+
+.branch-card .kpi-icon {
+    background: #f0e3ff;
+    color: #8750bf;
+}
+
+.kpi-card h2 {
+    margin: 22px 0 10px;
+    color: var(--text-color);
+    font-size: 25px;
+    overflow-wrap: anywhere;
+}
+
+.kpi-card p {
+    color: var(--muted-text);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Dark Mode KPI Cards */
+
+body.dark-mode .revenue-card .kpi-icon {
+    background: #194c37;
+    color: #8ce6ae;
+}
+
+body.dark-mode .units-card .kpi-icon {
+    background: #203d60;
+    color: #9dc6ff;
+}
+
+body.dark-mode .month-card .kpi-icon {
+    background: #574522;
+    color: #ffdb7e;
+}
+
+body.dark-mode .branch-card .kpi-icon {
+    background: #44315d;
+    color: #d9b4ff;
+}
+
+/* =========================
+   7. Charts
+========================= */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.chart-card {
+    min-width: 0;
+    padding: 24px;
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    background: var(--panel-bg);
+    box-shadow: var(--shadow);
+    transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.chart-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.chart-heading h3 {
+    color: var(--text-color);
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.chart-heading p {
+    color: var(--muted-text);
+    font-size: 12px;
+}
+
+.chart-badge {
+    padding: 7px 10px;
+    border-radius: 8px;
+    background: var(--page-bg);
+    color: var(--muted-text);
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 310px;
+}
+
+/* =========================
+   8. Footer
+========================= */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 18px 2px;
+    color: var(--muted-text);
+    font-size: 11px;
+}
+
+/* =========================
+   9. Mobile Sidebar Overlay
+========================= */
+
+.sidebar-overlay {
+    display: none;
+}
+
+/* =========================
+   10. Tablet Responsive
+========================= */
+
+@media (max-width: 1100px) {
+    .main-content {
+        padding: 24px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        height: 300px;
+    }
+}
+
+/* =========================
+   11. Mobile Responsive
+========================= */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 260px;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 16px;
+    }
+
+    .top-header {
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .header-left {
+        align-items: flex-start;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .header-left h1 {
+        font-size: 20px;
+    }
+
+    .header-left p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .header-actions {
+        gap: 8px;
+    }
+
+    .header-profile .profile-info {
+        display: none;
+    }
+
+    .header-profile .profile-avatar {
+        width: 36px;
+        height: 36px;
+    }
+
+    .theme-toggle {
+        width: 36px;
+        height: 36px;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .kpi-card {
+        padding: 20px;
+    }
+
+    .kpi-card h2 {
+        font-size: 23px;
+    }
+
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .chart-card {
+        padding: 18px;
+    }
+
+    .chart-container {
+        height: 260px;
+    }
+
+    .footer {
+        flex-direction: column;
+        line-height: 1.5;
+    }
+}
+
+/* Small Mobile Screens */
+
+@media (max-width: 380px) {
+    .main-content {
+        padding: 10px;
+    }
+
+    .top-header {
+        gap: 8px;
+        padding: 12px;
+    }
+
+    .header-left {
+        gap: 8px;
+    }
+
+    .header-left h1 {
+        font-size: 17px;
+    }
+
+    .header-left p {
+        font-size: 10px;
+    }
+
+    .kpi-card,
+    .chart-card {
+        padding: 15px;
+    }
+
+    .chart-container {
+        height: 230px;
+    }
+}

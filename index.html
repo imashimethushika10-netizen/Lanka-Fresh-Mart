@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Lanka Fresh Mart Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Lanka Fresh Mart</span>
+        </div>
+
+        <nav class="navigation">
+            <a href="#dashboard" class="nav-link active">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="#sales" class="nav-link">
+                <i class="fa-solid fa-chart-line"></i>
+                <span>Sales</span>
+            </a>
+
+            <a href="#reports" class="nav-link">
+                <i class="fa-solid fa-file-lines"></i>
+                <span>Reports</span>
+            </a>
+
+            <a href="#settings" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="profile-avatar">IS</div>
+            <div class="profile-info">
+                <strong>I. Senarath</strong>
+                <small>Administrator</small>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="dashboard">
+
+        <!-- Header -->
+        <header class="top-header">
+
+            <div class="header-left">
+                <button class="menu-toggle" id="menuToggle"
+                        aria-label="Open navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <h1>Dashboard</h1>
+                    <p>Welcome back! Here's your sales overview.</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+
+                <button class="theme-toggle" id="themeToggle"
+                        aria-label="Switch to dark mode"
+                        title="Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <div class="header-profile">
+                    <div class="profile-avatar">IS</div>
+                    <div class="profile-info">
+                        <strong>I. Senarath</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid" aria-label="Sales summary">
+
+            <article class="kpi-card revenue-card">
+                <div class="kpi-top">
+                    <span>Total Revenue</span>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                </div>
+                <h2 id="totalRevenue">LKR 0</h2>
+                <p>Revenue for all months</p>
+            </article>
+
+            <article class="kpi-card units-card">
+                <div class="kpi-top">
+                    <span>Units Sold</span>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                </div>
+                <h2 id="totalUnits">0</h2>
+                <p>Total units sold</p>
+            </article>
+
+            <article class="kpi-card month-card">
+                <div class="kpi-top">
+                    <span>Best Month</span>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                </div>
+                <h2 id="bestMonth">-</h2>
+                <p id="bestMonthRevenue">Highest revenue</p>
+            </article>
+
+            <article class="kpi-card branch-card">
+                <div class="kpi-top">
+                    <span>Best Branch</span>
+                    <div class="kpi-icon">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                </div>
+                <h2 id="bestBranch">-</h2>
+                <p id="bestBranchRevenue">Highest branch revenue</p>
+            </article>
+
+        </section>
+
+        <!-- Charts -->
+        <section class="charts-grid" id="sales">
+
+            <article class="chart-card">
+                <div class="chart-heading">
+                    <div>
+                        <h3>Monthly Revenue</h3>
+                        <p>Revenue performance by month</p>
+                    </div>
+                    <span class="chart-badge">2026</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="monthlyChart"></canvas>
+                </div>
+            </article>
+
+            <article class="chart-card" id="reports">
+                <div class="chart-heading">
+                    <div>
+                        <h3>Branch Sales</h3>
+                        <p>Revenue comparison by branch</p>
+                    </div>
+                    <span class="chart-badge">Branches</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="branchChart"></canvas>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="settings">
+            <p>© 2026 Lanka Fresh Mart. All rights reserved.</p>
+            <p>Sales Management Dashboard</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+</body>
+</html>
+
+
+
